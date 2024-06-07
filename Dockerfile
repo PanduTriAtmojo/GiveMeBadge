@@ -8,4 +8,6 @@ RUN pip install -r requirements.txt
 
 COPY ./index.py .
 
+EXPOSE 8000
+
 CMD ["python", "index.py"]
